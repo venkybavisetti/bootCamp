@@ -6,39 +6,44 @@ import static org.junit.Assert.*;
 
 public class RectangleTest {
     @Test
-    public void shouldCalculateAreaOfRectangle() {
-        Rectangle rectangle = new Rectangle(2, 3);
+    public void shouldCalculateAreaOfRectangle() throws NegativeBreadthException, NegativeLengthException {
+        Rectangle rectangle = Rectangle.create(2, 3);
         assertEquals(6, rectangle.area(), 0);
     }
 
     @Test
-    public void shouldCalculateAreaOfRectangleWithGivenFractionalValues() {
-        Rectangle rectangle = new Rectangle(2.5, 3.5);
+    public void shouldCalculateAreaOfRectangleWithGivenFractionalValues() throws NegativeBreadthException, NegativeLengthException {
+        Rectangle rectangle = Rectangle.create(2.5, 3.5);
         assertEquals(8.75, rectangle.area(), 0);
     }
 
     @Test
-    public void shouldCalculatePerimeterOfRectangle() {
+    public void shouldCalculatePerimeterOfRectangle() throws NegativeBreadthException, NegativeLengthException {
 
-        Rectangle rectangle = new Rectangle(2, 3);
+        Rectangle rectangle = Rectangle.create(2, 3);
         assertEquals(10, rectangle.perimeter(), 0);
     }
 
     @Test
-    public void shouldCalculatePerimeterOfRectangleWithGivenFractionalValues() {
+    public void shouldCalculatePerimeterOfRectangleWithGivenFractionalValues() throws NegativeBreadthException, NegativeLengthException {
 
-        Rectangle rectangle = new Rectangle(2.5, 3.5);
+        Rectangle rectangle = Rectangle.create(2.5, 3.5);
         assertEquals(12, rectangle.perimeter(), 0);
     }
 
     @Test
-    public void shouldRepresentTheRectangle() {
-        Rectangle rectangle = new Rectangle(2, 3);
+    public void shouldRepresentTheRectangle() throws NegativeBreadthException, NegativeLengthException {
+        Rectangle rectangle = Rectangle.create(2, 3);
         assertEquals("Rectangle{length=2.0, breadth=3.0}", rectangle.toString());
     }
 
     @Test
-    public void shouldThrowAnExceptionWhenRectangleIsCreatedWithNegativeSides() {
-        assertThrows(NegetiveSideException.class, () -> new Rectangle(-2, 3));
+    public void shouldThrowAnExceptionWhenRectangleIsCreatedWithNegativeLength() {
+        assertThrows(NegativeLengthException.class, () -> Rectangle.create(-2, 3));
+    }
+
+    @Test
+    public void shouldThrowAnExceptionWhenRectangleIsCreatedWithNegativeBreadth() {
+        assertThrows(NegativeBreadthException.class, () -> Rectangle.create(2, -3));
     }
 }
