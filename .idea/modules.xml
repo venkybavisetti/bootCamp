@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/objectbootcamp.iml" filepath="$PROJECT_DIR$/objectbootcamp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/probability/probability.iml" filepath="$PROJECT_DIR$/probability/probability.iml" />
     </modules>
   </component>
 </project>
