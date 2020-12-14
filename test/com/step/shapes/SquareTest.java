@@ -1,4 +1,4 @@
-package com.step.geometry.shapes;
+package com.step.shapes;
 
 import org.junit.Test;
 

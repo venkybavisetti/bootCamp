@@ -1,4 +1,4 @@
-package com.step.geometry.shapes;
+package com.step.shapes;
 
 public class Square {
     private final double side;
