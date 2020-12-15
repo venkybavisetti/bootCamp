@@ -9,10 +9,10 @@ public class Length {
         this.unit = unit;
     }
 
-    public boolean compare(Length length) {
-        double thisValueInCentimeter = this.convertToBaseUnit();
-        double otherValueInCentimeter = length.convertToBaseUnit();
-        return thisValueInCentimeter == otherValueInCentimeter;
+    public boolean equalsTo(Length length) {
+        double thisValueInBaseUnit = this.convertToBaseUnit();
+        double otherValueInBaseUnit = length.convertToBaseUnit();
+        return thisValueInBaseUnit == otherValueInBaseUnit;
     }
 
     private double convertToBaseUnit() {
