@@ -46,4 +46,12 @@ public class LengthTest {
         Length inMillimeter = new Length(11, LengthUnit.MM);
         assertFalse(inCentimeter.equalsTo(inMillimeter));
     }
+
+    @Test
+    public void shouldAddGivenLengthOfSameUnit() {
+        Length twoInches = new Length(2, LengthUnit.INCH);
+        Length threeInches = new Length(3, LengthUnit.INCH);
+        Length totalLength = twoInches.add(threeInches);
+        assertEquals(new Length(5.0, LengthUnit.INCH), totalLength);
+    }
 }
