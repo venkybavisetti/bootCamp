@@ -1,13 +1,13 @@
 package com.step.measurements;
 
-public enum Unit {
+public enum LengthUnit {
     FEET(30),
     INCH(2.5),
     CM(1),
     MM(0.1);
     private final double baseValue;
 
-    Unit(double baseValue) {
+    LengthUnit(double baseValue) {
         this.baseValue = baseValue;
     }
 

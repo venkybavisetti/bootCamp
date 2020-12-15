@@ -1,14 +1,20 @@
 package com.step.measurements;
 
-public enum Volume {
-    GALLON(3.78), LITER(1);
-    private final double baseValue;
+public class Volume {
+    private final double value;
+    private final VolumeUnit volumeUnit;
 
-    Volume(double baseValue) {
-        this.baseValue = baseValue;
+    public Volume(double value, VolumeUnit volumeUnit) {
+        this.value = value;
+        this.volumeUnit = volumeUnit;
     }
 
-    public double convertToBase(double value) {
-        return value*this.baseValue;
+    public boolean equalsTo(Volume volume) {
+        double thisValueInBase = this.volumeUnit.convertToBase(this.value);
+        double otherValueInBase = volume.volumeUnit.convertToBase(volume.value);
+        return thisValueInBase == otherValueInBase;
     }
+
+
 }
+

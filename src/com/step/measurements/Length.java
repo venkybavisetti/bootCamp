@@ -2,11 +2,11 @@ package com.step.measurements;
 
 public class Length {
     private final double value;
-    private final Unit unit;
+    private final LengthUnit lengthUnit;
 
-    public Length(double value, Unit unit) {
+    public Length(double value, LengthUnit lengthUnit) {
         this.value = value;
-        this.unit = unit;
+        this.lengthUnit = lengthUnit;
     }
 
     public boolean equalsTo(Length length) {
@@ -16,6 +16,6 @@ public class Length {
     }
 
     private double convertToBaseUnit() {
-        return this.unit.convertToBaseUnit(this.value);
+        return this.lengthUnit.convertToBaseUnit(this.value);
     }
 }

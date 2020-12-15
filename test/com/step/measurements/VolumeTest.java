@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class LiquidTest {
+public class VolumeTest {
     @Test
     public void shouldBeEqualForGivenVolumesInGallonAndLitre() {
-        Liquid inGallon = new Liquid(1, Volume.GALLON);
-        Liquid inLitre = new Liquid(3.78, Volume.LITER);
+        Volume inGallon = new Volume(1, VolumeUnit.GALLON);
+        Volume inLitre = new Volume(3.78, VolumeUnit.LITER);
         assertTrue(inGallon.equalsTo(inLitre));
     }
 }
