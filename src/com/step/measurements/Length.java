@@ -10,6 +10,12 @@ public class Length {
     }
 
     public boolean compare(Length length) {
-        return length.unit.getValueInCenti() * length.value == this.unit.getValueInCenti() * this.value;
+        double thisValueInCentimeter = this.convertToBaseUnit();
+        double otherValueInCentimeter = length.convertToBaseUnit();
+        return thisValueInCentimeter == otherValueInCentimeter;
+    }
+
+    private double convertToBaseUnit() {
+        return this.unit.convertToBaseUnit(this.value);
     }
 }

@@ -2,15 +2,16 @@ package com.step.measurements;
 
 public enum Unit {
     FEET(30),
-    INCHES(2.5),
-    CENTIMETERS(1);
-    private final double value;
+    INCH(2.5),
+    CM(1),
+    MM(0.1);
+    private final double baseValue;
 
-    Unit(double value) {
-        this.value = value;
+    Unit(double baseValue) {
+        this.baseValue = baseValue;
     }
 
-    public double getValueInCenti() {
-        return this.value;
+    public double convertToBaseUnit(double valueToConvert) {
+        return this.baseValue * valueToConvert;
     }
 }
