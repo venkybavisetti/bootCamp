@@ -1,6 +1,6 @@
-package com.step.measurements;
+package com.step.measurements.unit;
 
-public enum LengthUnit implements Unit<LengthUnit> {
+public enum LengthUnit implements Unit {
     FEET(12),
     INCH(1),
     CM(0.4),
@@ -17,9 +17,10 @@ public enum LengthUnit implements Unit<LengthUnit> {
     }
 
     @Override
-    public double convertTo(double value, LengthUnit unit) {
+    public double convertTo(double value, Unit unit) {
+        LengthUnit lengthUnit = (LengthUnit) unit;
         double valueInStandardUnit = this.convertToBase(value);
-        return valueInStandardUnit / unit.baseValue;
+        return valueInStandardUnit / lengthUnit.baseValue;
     }
 
     public LengthUnit getStandardUnit() {

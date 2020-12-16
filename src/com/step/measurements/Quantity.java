@@ -1,5 +1,7 @@
 package com.step.measurements;
 
+import com.step.measurements.unit.Unit;
+
 import java.util.Objects;
 
 public class Quantity <T extends Unit>{
@@ -12,25 +14,25 @@ public class Quantity <T extends Unit>{
     }
 
     public boolean equalsTo(Quantity<T> quantity) {
-        double thisValueStandardUnit = this.convertToBaseUnit();
-        double otherValueInStandardUnit = quantity.convertToBaseUnit();
-        return thisValueStandardUnit == otherValueInStandardUnit;
+        double thisValueInBaseUnit = this.convertToBaseUnit();
+        double otherValueInBaseUnit = quantity.convertToBaseUnit();
+        return thisValueInBaseUnit == otherValueInBaseUnit;
     }
 
-    public Quantity add(Quantity<T> anotherQuantity) {
-        double thisValueStandardUnit = this.convertToStandardUnit();
+    public Quantity<T> add(Quantity<T> anotherQuantity) {
+        double thisValueInStandardUnit = this.convertToStandardUnit();
         double otherValueInStandardUnit = anotherQuantity.convertToStandardUnit();
-        double total = thisValueStandardUnit + otherValueInStandardUnit;
-        return new Quantity(total, this.unit.getStandardUnit());
+        double total = Math.round((thisValueInStandardUnit + otherValueInStandardUnit) * 100) / 100.0;
+        return new Quantity<>(total, (T) this.unit.getStandardUnit());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Quantity quantity = (Quantity) o;
+        Quantity<?> quantity = (Quantity<?>) o;
         return Double.compare(quantity.value, value) == 0 &&
-                unit == quantity.unit;
+                Objects.equals(unit, quantity.unit);
     }
 
     @Override
