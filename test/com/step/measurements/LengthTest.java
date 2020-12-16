@@ -54,4 +54,12 @@ public class LengthTest {
         Length totalLength = twoInches.add(threeInches);
         assertEquals(new Length(5.0, LengthUnit.INCH), totalLength);
     }
+
+    @Test
+    public void shouldAddGivenLengthOfAnyUnit() {
+        Length twoInches = new Length(2, LengthUnit.INCH);
+        Length threeInches = new Length(2.5, LengthUnit.CM);
+        Length totalLength = twoInches.add(threeInches);
+        assertEquals(new Length(3, LengthUnit.INCH), totalLength);
+    }
 }

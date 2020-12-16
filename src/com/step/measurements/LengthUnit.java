@@ -1,21 +1,21 @@
 package com.step.measurements;
 
 public enum LengthUnit {
-    FEET(30),
-    INCH(2.5),
-    CM(1),
-    MM(0.1);
+    FEET(12),
+    INCH(1),
+    CM(0.4),
+    MM(0.04);
     private final double baseValue;
 
     LengthUnit(double baseValue) {
         this.baseValue = baseValue;
     }
 
-    public double convertToBaseUnit(double valueToConvert) {
+    public double convertToStandardUnit(double valueToConvert) {
         return this.baseValue * valueToConvert;
     }
 
-    public double convertToLocal(double value) {
-        return value / this.baseValue;
+    public LengthUnit getStandardUnit() {
+        return INCH;
     }
 }

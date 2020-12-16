@@ -12,20 +12,16 @@ public class Length {
     }
 
     public boolean equalsTo(Length length) {
-        double thisValueInBaseUnit = this.convertToBaseUnit();
-        double otherValueInBaseUnit = length.convertToBaseUnit();
-        return thisValueInBaseUnit == otherValueInBaseUnit;
-    }
-
-    private double convertToBaseUnit() {
-        return this.unit.convertToBaseUnit(this.value);
+        double thisValueStandardUnit = this.convertToStandardUnit();
+        double otherValueInStandardUnit = length.convertToStandardUnit();
+        return thisValueStandardUnit == otherValueInStandardUnit;
     }
 
     public Length add(Length anotherLength) {
-        double thisValueInBaseUnit = this.convertToBaseUnit();
-        double otherValueInBaseUnit = anotherLength.convertToBaseUnit();
-        double total = this.unit.convertToLocal(thisValueInBaseUnit + otherValueInBaseUnit);
-        return new Length(total, this.unit);
+        double thisValueStandardUnit = this.convertToStandardUnit();
+        double otherValueInStandardUnit = anotherLength.convertToStandardUnit();
+        double total = thisValueStandardUnit + otherValueInStandardUnit;
+        return new Length(total, this.unit.getStandardUnit());
     }
 
     @Override
@@ -40,5 +36,9 @@ public class Length {
     @Override
     public int hashCode() {
         return Objects.hash(value, unit);
+    }
+
+    private double convertToStandardUnit() {
+        return this.unit.convertToStandardUnit(this.value);
     }
 }

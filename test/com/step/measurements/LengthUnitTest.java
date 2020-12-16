@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 
 public class LengthUnitTest {
     @Test
-    public void shouldConvertToBaseUnitGivenFeet() {
-        double feetInBaseValue = LengthUnit.FEET.convertToBaseUnit(2);
+    public void shouldConvertToStandardUnitForGivenFeet() {
+        double feetInBaseValue = LengthUnit.FEET.convertToStandardUnit(2);
         assertEquals(60, feetInBaseValue, 0.0);
     }
 }
