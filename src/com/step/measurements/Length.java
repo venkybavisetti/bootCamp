@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Length {
     private final double value;
-    private final LengthUnit lengthUnit;
+    private final LengthUnit unit;
 
-    public Length(double value, LengthUnit lengthUnit) {
+    public Length(double value, LengthUnit unit) {
         this.value = value;
-        this.lengthUnit = lengthUnit;
+        this.unit = unit;
     }
 
     public boolean equalsTo(Length length) {
@@ -18,14 +18,14 @@ public class Length {
     }
 
     private double convertToBaseUnit() {
-        return this.lengthUnit.convertToBaseUnit(this.value);
+        return this.unit.convertToBaseUnit(this.value);
     }
 
     public Length add(Length anotherLength) {
         double thisValueInBaseUnit = this.convertToBaseUnit();
         double otherValueInBaseUnit = anotherLength.convertToBaseUnit();
-        double total = this.lengthUnit.convertToLocal(thisValueInBaseUnit + otherValueInBaseUnit);
-        return new Length(total, this.lengthUnit);
+        double total = this.unit.convertToLocal(thisValueInBaseUnit + otherValueInBaseUnit);
+        return new Length(total, this.unit);
     }
 
     @Override
@@ -34,11 +34,11 @@ public class Length {
         if (o == null || getClass() != o.getClass()) return false;
         Length length = (Length) o;
         return Double.compare(length.value, value) == 0 &&
-                lengthUnit == length.lengthUnit;
+                unit == length.unit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, lengthUnit);
+        return Objects.hash(value, unit);
     }
 }
