@@ -2,36 +2,35 @@ package com.step.measurements;
 
 import java.util.Objects;
 
-public class Length {
+public class Quantity <T extends Unit>{
     private final double value;
-    private final LengthUnit unit;
-    private final static LengthUnit STANDARD_UNIT = LengthUnit.INCH;
+    private final T unit;
 
-    public Length(double value, LengthUnit unit) {
+    public Quantity(double value, T unit) {
         this.value = value;
         this.unit = unit;
     }
 
-    public boolean equalsTo(Length length) {
+    public boolean equalsTo(Quantity<T> quantity) {
         double thisValueStandardUnit = this.convertToBaseUnit();
-        double otherValueInStandardUnit = length.convertToBaseUnit();
+        double otherValueInStandardUnit = quantity.convertToBaseUnit();
         return thisValueStandardUnit == otherValueInStandardUnit;
     }
 
-    public Length add(Length anotherLength) {
+    public Quantity add(Quantity<T> anotherQuantity) {
         double thisValueStandardUnit = this.convertToStandardUnit();
-        double otherValueInStandardUnit = anotherLength.convertToStandardUnit();
+        double otherValueInStandardUnit = anotherQuantity.convertToStandardUnit();
         double total = thisValueStandardUnit + otherValueInStandardUnit;
-        return new Length(total, STANDARD_UNIT);
+        return new Quantity(total, this.unit.getStandardUnit());
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Length length = (Length) o;
-        return Double.compare(length.value, value) == 0 &&
-                unit == length.unit;
+        Quantity quantity = (Quantity) o;
+        return Double.compare(quantity.value, value) == 0 &&
+                unit == quantity.unit;
     }
 
     @Override
@@ -40,10 +39,10 @@ public class Length {
     }
 
     private double convertToBaseUnit() {
-        return this.unit.convertToBaseUnit(this.value);
+        return this.unit.convertToBase(this.value);
     }
 
     private double convertToStandardUnit() {
-        return this.unit.convertTo(this.value, STANDARD_UNIT);
+        return this.unit.convertTo(this.value, this.unit.getStandardUnit());
     }
 }

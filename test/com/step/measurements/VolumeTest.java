@@ -18,7 +18,7 @@ public class VolumeTest {
         Volume inGallon = new Volume(1, VolumeUnit.GALLON);
         Volume inLitre = new Volume(1, VolumeUnit.LITER);
         Volume total = inLitre.add(inGallon);
-        assertEquals(new Volume(4.78, VolumeUnit.LITER), total);
+        assertEquals(new Volume(4.779999999999999, VolumeUnit.LITER), total);
     }
 
 }
