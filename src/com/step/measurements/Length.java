@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Length {
     private final double value;
     private final LengthUnit unit;
+    private final static LengthUnit STANDARD_UNIT = LengthUnit.INCH;
 
     public Length(double value, LengthUnit unit) {
         this.value = value;
@@ -12,8 +13,8 @@ public class Length {
     }
 
     public boolean equalsTo(Length length) {
-        double thisValueStandardUnit = this.convertToStandardUnit();
-        double otherValueInStandardUnit = length.convertToStandardUnit();
+        double thisValueStandardUnit = this.convertToBaseUnit();
+        double otherValueInStandardUnit = length.convertToBaseUnit();
         return thisValueStandardUnit == otherValueInStandardUnit;
     }
 
@@ -21,7 +22,7 @@ public class Length {
         double thisValueStandardUnit = this.convertToStandardUnit();
         double otherValueInStandardUnit = anotherLength.convertToStandardUnit();
         double total = thisValueStandardUnit + otherValueInStandardUnit;
-        return new Length(total, this.unit.getStandardUnit());
+        return new Length(total, STANDARD_UNIT);
     }
 
     @Override
@@ -38,7 +39,11 @@ public class Length {
         return Objects.hash(value, unit);
     }
 
+    private double convertToBaseUnit() {
+        return this.unit.convertToBaseUnit(this.value);
+    }
+
     private double convertToStandardUnit() {
-        return this.unit.convertToStandardUnit(this.value);
+        return this.unit.convertTo(this.value, STANDARD_UNIT);
     }
 }

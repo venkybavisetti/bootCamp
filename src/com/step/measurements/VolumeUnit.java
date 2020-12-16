@@ -11,4 +11,9 @@ public enum VolumeUnit {
     public double convertToBase(double value) {
         return value*this.baseValue;
     }
+
+    public double convertTo(double value, VolumeUnit unit) {
+        double valueInStandardUnit = this.convertToBase(value);
+        return valueInStandardUnit / unit.baseValue;
+    }
 }

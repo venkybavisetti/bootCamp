@@ -11,11 +11,12 @@ public enum LengthUnit {
         this.baseValue = baseValue;
     }
 
-    public double convertToStandardUnit(double valueToConvert) {
+    public double convertToBaseUnit(double valueToConvert) {
         return this.baseValue * valueToConvert;
     }
 
-    public LengthUnit getStandardUnit() {
-        return INCH;
+    public double convertTo(double value, LengthUnit unit) {
+        double valueInStandardUnit = this.convertToBaseUnit(value);
+        return valueInStandardUnit / unit.baseValue;
     }
 }
