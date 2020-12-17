@@ -13,7 +13,7 @@ public class LengthUnitTest {
 
     @Test
     public void shouldConvertTheValueToGivenUnit() {
-        double valueInInches = LengthUnit.CM.convertToLocal(0.8);
+        double valueInInches = LengthUnit.CM.convertToThisFromBase(0.8);
         assertEquals(2, valueInInches, 0.0);
     }
 }

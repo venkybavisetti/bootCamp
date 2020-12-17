@@ -23,7 +23,7 @@ public class Quantity<T extends Unit> {
         double thisValueInStandardUnit = this.convertToBaseUnit();
         double otherValueInStandardUnit = anotherQuantity.convertToBaseUnit();
         double total = Math.round((thisValueInStandardUnit + otherValueInStandardUnit) * 100) / 100.0;
-        return new Quantity<>(standardUnit.convertToLocal(total), standardUnit);
+        return new Quantity<>(standardUnit.convertToThisFromBase(total), standardUnit);
     }
 
     @Override
@@ -43,4 +43,5 @@ public class Quantity<T extends Unit> {
     private double convertToBaseUnit() {
         return this.unit.convertToBase(this.value);
     }
+
 }

@@ -14,7 +14,7 @@ public enum VolumeUnit implements Unit {
     }
 
     @Override
-    public double convertToLocal(double value) {
+    public double convertToThisFromBase(double value) {
         return value / this.baseValue;
     }
 }
