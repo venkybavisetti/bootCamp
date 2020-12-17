@@ -19,11 +19,11 @@ public class Quantity <T extends Unit>{
         return thisValueInBaseUnit == otherValueInBaseUnit;
     }
 
-    public Quantity<T> add(Quantity<T> anotherQuantity) {
-        double thisValueInStandardUnit = this.convertToStandardUnit();
-        double otherValueInStandardUnit = anotherQuantity.convertToStandardUnit();
+    public Quantity<T> add(Quantity<T> anotherQuantity, T standardUnit) {
+        double thisValueInStandardUnit = this.convertToStandardUnit(standardUnit);
+        double otherValueInStandardUnit = anotherQuantity.convertToStandardUnit(standardUnit);
         double total = Math.round((thisValueInStandardUnit + otherValueInStandardUnit) * 100) / 100.0;
-        return new Quantity<>(total, (T) this.unit.getStandardUnit());
+        return new Quantity<>(total, standardUnit);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Quantity <T extends Unit>{
         return this.unit.convertToBase(this.value);
     }
 
-    private double convertToStandardUnit() {
-        return this.unit.convertTo(this.value, this.unit.getStandardUnit());
+    private double convertToStandardUnit(T standardUnit) {
+        return this.unit.convertTo(this.value, standardUnit);
     }
 }

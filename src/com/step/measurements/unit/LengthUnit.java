@@ -23,7 +23,6 @@ public enum LengthUnit implements Unit {
         return valueInStandardUnit / lengthUnit.baseValue;
     }
 
-    public LengthUnit getStandardUnit() {
-        return INCH;
-    }
 }
+
+

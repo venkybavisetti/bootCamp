@@ -53,7 +53,7 @@ public class QuantityTest {
     public void shouldAddGivenLengthOfSameUnit() {
         Quantity<LengthUnit> twoInches = new Quantity<>(2, LengthUnit.INCH);
         Quantity<LengthUnit> threeInches = new Quantity<>(3, LengthUnit.INCH);
-        Quantity<LengthUnit> totalQuantity = twoInches.add(threeInches);
+        Quantity<LengthUnit> totalQuantity = twoInches.add(threeInches, LengthUnit.INCH);
         assertEquals(new Quantity<>(5.0, LengthUnit.INCH), totalQuantity);
     }
 
@@ -61,7 +61,7 @@ public class QuantityTest {
     public void shouldAddGivenLengthOfAnyUnit() {
         Quantity<LengthUnit> twoInches = new Quantity<>(2, LengthUnit.INCH);
         Quantity<LengthUnit> threeInches = new Quantity<>(2.5, LengthUnit.CM);
-        Quantity<LengthUnit> totalQuantity = twoInches.add(threeInches);
+        Quantity<LengthUnit> totalQuantity = twoInches.add(threeInches, LengthUnit.INCH);
         assertEquals(new Quantity<>(3, LengthUnit.INCH), totalQuantity);
     }
 
@@ -76,7 +76,7 @@ public class QuantityTest {
     public void shouldAddGivenVolumesInGallonAndLitre() {
         Quantity<VolumeUnit> inGallon = new Quantity<>(1, VolumeUnit.GALLON);
         Quantity<VolumeUnit> inLitre = new Quantity<>(1, VolumeUnit.LITER);
-        Quantity<VolumeUnit> total = inLitre.add(inGallon);
+        Quantity<VolumeUnit> total = inLitre.add(inGallon, VolumeUnit.LITER);
         assertEquals(new Quantity<>(4.78, VolumeUnit.LITER), total);
     }
 }

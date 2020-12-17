@@ -20,8 +20,4 @@ public enum VolumeUnit implements Unit {
         return valueInStandardUnit / volumeUnit.baseValue;
     }
 
-    @Override
-    public VolumeUnit getStandardUnit() {
-        return LITER;
-    }
 }
