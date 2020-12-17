@@ -13,7 +13,7 @@ public class VolumeUnitTest {
 
     @Test
     public void shouldConvertTheValueToGivenUnit() {
-        double valueInGallon = VolumeUnit.LITER.convertTo(3.78, VolumeUnit.GALLON);
+        double valueInGallon = VolumeUnit.GALLON.convertToLocal(3.78);
         assertEquals(1, valueInGallon, 0.0);
     }
 }

@@ -14,10 +14,7 @@ public enum VolumeUnit implements Unit {
     }
 
     @Override
-    public double convertTo(double value, Unit unit) {
-        VolumeUnit volumeUnit = (VolumeUnit) unit;
-        double valueInStandardUnit = this.convertToBase(value);
-        return valueInStandardUnit / volumeUnit.baseValue;
+    public double convertToLocal(double value) {
+        return value / this.baseValue;
     }
-
 }

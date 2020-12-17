@@ -4,7 +4,7 @@ import com.step.measurements.unit.Unit;
 
 import java.util.Objects;
 
-public class Quantity <T extends Unit>{
+public class Quantity<T extends Unit> {
     private final double value;
     private final T unit;
 
@@ -20,10 +20,10 @@ public class Quantity <T extends Unit>{
     }
 
     public Quantity<T> add(Quantity<T> anotherQuantity, T standardUnit) {
-        double thisValueInStandardUnit = this.convertToStandardUnit(standardUnit);
-        double otherValueInStandardUnit = anotherQuantity.convertToStandardUnit(standardUnit);
+        double thisValueInStandardUnit = this.convertToBaseUnit();
+        double otherValueInStandardUnit = anotherQuantity.convertToBaseUnit();
         double total = Math.round((thisValueInStandardUnit + otherValueInStandardUnit) * 100) / 100.0;
-        return new Quantity<>(total, standardUnit);
+        return new Quantity<>(standardUnit.convertToLocal(total), standardUnit);
     }
 
     @Override
@@ -42,9 +42,5 @@ public class Quantity <T extends Unit>{
 
     private double convertToBaseUnit() {
         return this.unit.convertToBase(this.value);
-    }
-
-    private double convertToStandardUnit(T standardUnit) {
-        return this.unit.convertTo(this.value, standardUnit);
     }
 }

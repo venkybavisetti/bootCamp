@@ -17,12 +17,9 @@ public enum LengthUnit implements Unit {
     }
 
     @Override
-    public double convertTo(double value, Unit unit) {
-        LengthUnit lengthUnit = (LengthUnit) unit;
-        double valueInStandardUnit = this.convertToBase(value);
-        return valueInStandardUnit / lengthUnit.baseValue;
+    public double convertToLocal(double value) {
+        return value / this.baseValue;
     }
-
 }
 
 
