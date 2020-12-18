@@ -1,6 +1,5 @@
 package com.step.measurements;
 
-import com.step.measurements.unit.LengthUnit;
 import com.step.measurements.unit.Unit;
 
 import java.util.Objects;
@@ -25,8 +24,12 @@ public class Quantity<T extends Unit> {
     public Quantity<T> add(Quantity<T> anotherQuantity) {
         double thisValueInStandardUnit = this.convertToBaseUnit();
         double otherValueInStandardUnit = anotherQuantity.convertToBaseUnit();
-        double total = Math.round((thisValueInStandardUnit + otherValueInStandardUnit) * 100) / 100.0;
+        double total = roundValue(thisValueInStandardUnit + otherValueInStandardUnit);
         return new Quantity<>(standardUnit.convertToThisFromBase(total), standardUnit, standardUnit);
+    }
+
+    private double roundValue(double value) {
+        return Math.round((value) * 100) / 100.0;
     }
 
     @Override
@@ -46,5 +49,4 @@ public class Quantity<T extends Unit> {
     private double convertToBaseUnit() {
         return this.unit.convertToBase(this.value);
     }
-
 }
