@@ -4,28 +4,28 @@ import com.step.measurements.unit.Unit;
 
 import java.util.Objects;
 
-public class Quantity<T extends Unit> {
+public class Measurement<T extends Unit> {
     private final double value;
     private final T unit;
     private final T standardUnit;
 
-    public Quantity(double value, T unit, T standardUnit) {
+    public Measurement(double value, T unit, T standardUnit) {
         this.value = value;
         this.unit = unit;
         this.standardUnit = standardUnit;
     }
 
-    public boolean equalsTo(Quantity<T> quantity) {
+    public boolean equalsTo(Measurement<T> measurement) {
         double thisValueInBaseUnit = this.convertToBaseUnit();
-        double otherValueInBaseUnit = quantity.convertToBaseUnit();
+        double otherValueInBaseUnit = measurement.convertToBaseUnit();
         return thisValueInBaseUnit == otherValueInBaseUnit;
     }
 
-    public Quantity<T> add(Quantity<T> anotherQuantity) {
+    public Measurement<T> add(Measurement<T> anotherMeasurement) {
         double thisValueInStandardUnit = this.convertToBaseUnit();
-        double otherValueInStandardUnit = anotherQuantity.convertToBaseUnit();
+        double otherValueInStandardUnit = anotherMeasurement.convertToBaseUnit();
         double total = roundValue(thisValueInStandardUnit + otherValueInStandardUnit);
-        return new Quantity<>(standardUnit.convertToThisFromBase(total), standardUnit, standardUnit);
+        return new Measurement<>(standardUnit.convertToThisFromBase(total), standardUnit, standardUnit);
     }
 
     private double roundValue(double value) {
@@ -36,9 +36,9 @@ public class Quantity<T extends Unit> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Quantity<?> quantity = (Quantity<?>) o;
-        return Double.compare(quantity.value, value) == 0 &&
-                Objects.equals(unit, quantity.unit);
+        Measurement<?> measurement = (Measurement<?>) o;
+        return Double.compare(measurement.value, value) == 0 &&
+                Objects.equals(unit, measurement.unit);
     }
 
     @Override
