@@ -10,8 +10,12 @@ public class ParkingLot {
     }
 
     public boolean park() {
-        if (totalSlotsCount == filledSlotsCount) return false;
+        if (isFull()) return false;
         this.filledSlotsCount++;
         return true;
+    }
+
+    public boolean isFull() {
+        return totalSlotsCount == filledSlotsCount;
     }
 }
