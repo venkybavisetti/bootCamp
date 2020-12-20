@@ -2,10 +2,10 @@ package com.step.parking;
 
 import java.util.ArrayList;
 
-public class ParkingLotAttendant {
+public class ParkingLotAssistant {
     private final ArrayList<ParkingLot> parkingLots;
 
-    public ParkingLotAttendant() {
+    public ParkingLotAssistant() {
         this.parkingLots = new ArrayList<>();
     }
 
