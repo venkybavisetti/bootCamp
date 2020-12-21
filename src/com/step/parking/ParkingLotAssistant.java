@@ -2,7 +2,7 @@ package com.step.parking;
 
 import java.util.HashMap;
 
-public class ParkingLotAssistant implements ParkingLotListener{
+public class ParkingLotAssistant implements ParkingLotListener {
     private final HashMap<ParkingLot, ParkingLotStatus> parkingLots;
 
     public ParkingLotAssistant() {
