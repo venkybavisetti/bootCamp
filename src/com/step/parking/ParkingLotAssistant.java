@@ -17,7 +17,7 @@ public class ParkingLotAssistant implements ParkingLotListener {
     }
 
     public void addParkingLot(ParkingLot parkingLot) {
-        parkingLot.addListener(this::listen);
+        parkingLot.addListener(this);
         this.parkingLots.put(parkingLot, ParkingLotStatus.VACANT);
     }
 
