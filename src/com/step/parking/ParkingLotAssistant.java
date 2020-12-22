@@ -17,12 +17,12 @@ public class ParkingLotAssistant implements ParkingLotListener {
     }
 
     public void addParkingLot(ParkingLot parkingLot) {
-        parkingLot.addListener(this);
+        parkingLot.addListener(this, ParkingLotEvent.FULL);
         this.parkingLots.put(parkingLot, ParkingLotStatus.VACANT);
     }
 
     @Override
-    public void listen(ParkingLot parkingLot) {
-        this.parkingLots.put(parkingLot, ParkingLotStatus.FULL);
+    public void onStatusUpdate(ParkingLot parkingLot) {
+        this.parkingLots.put(parkingLot, ParkingLotStatus.FILLED);
     }
 }
