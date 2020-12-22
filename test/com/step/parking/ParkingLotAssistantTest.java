@@ -2,23 +2,19 @@ package com.step.parking;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class ParkingLotAssistantTest {
     @Test
-    public void shouldParkCarInParkingLot() {
-        ParkingLotAssistant parkingLotAssistant = new ParkingLotAssistant();
-        parkingLotAssistant.addParkingLot(new ParkingLot(5));
-        parkingLotAssistant.addParkingLot(new ParkingLot(5));
-        assertTrue(parkingLotAssistant.park());
-    }
+    public void shouldNotifyListenerWhenParkingLotIsFull() {
+        final ParkingLotAssistant parkingLotAssistant = mock(ParkingLotAssistant.class);
+        final ParkingLot parkingLot = new ParkingLot(1);
 
-    @Test
-    public void shouldNotParkCarInParkingLotWhenAllParkingLotsAreFull() {
-        ParkingLotAssistant parkingLotAssistant = new ParkingLotAssistant();
-        ParkingLot parkingLot = new ParkingLot(1);
-        parkingLotAssistant.addParkingLot(parkingLot);
+        parkingLot.addListener(parkingLotAssistant, ParkingLotEvent.FULL);
         parkingLot.park();
-        assertFalse(parkingLotAssistant.park());
+        parkingLot.park();
+
+        verify(parkingLotAssistant).onStatusUpdate(parkingLot);
     }
 }
