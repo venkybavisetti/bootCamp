@@ -17,15 +17,15 @@ public class ParkingLot {
         return true;
     }
 
+    public void addListener(ParkingLotListener parkingLotListener) {
+        this.listener = parkingLotListener;
+    }
+
     private void notifyListener() {
         listener.listen(this);
     }
 
-    public boolean isFull() {
+    private boolean isFull() {
         return totalSlotsCount == filledSlotsCount;
-    }
-
-    public void addListener(ParkingLotListener parkingLotListener) {
-        this.listener = parkingLotListener;
     }
 }

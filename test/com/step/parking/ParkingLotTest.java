@@ -23,20 +23,4 @@ public class ParkingLotTest {
         parkingLot.park();
         assertFalse(parkingLot.park());
     }
-
-    @Test
-    public void shouldGetStatusOfTheParkingLotWhenParkingLotIsFull() {
-        ParkingLotListener mockListener = mock(ParkingLotListener.class);
-
-        ParkingLot parkingLot = new ParkingLot(1);
-        parkingLot.addListener(mockListener);
-        parkingLot.park();
-        assertTrue(parkingLot.isFull());
-    }
-
-    @Test
-    public void shouldGetStatusOfTheParkingLotWhenParkingLotIsNotFull() {
-        ParkingLot parkingLot = new ParkingLot(1);
-        assertFalse(parkingLot.isFull());
-    }
 }
