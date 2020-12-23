@@ -3,7 +3,7 @@ package com.step.parking;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ParkingLot {
+public class ParkingLot implements ParkingLotInfo{
     private int filledSlotsCount;
     private final int totalSlotsCount;
     private final HashMap<ParkingLotEvent, ArrayList<ParkingLotListener>> listeners;
@@ -58,5 +58,10 @@ public class ParkingLot {
 
     private boolean isFull() {
         return totalSlotsCount == filledSlotsCount;
+    }
+
+    @Override
+    public int getParkingLotId() {
+        return this.hashCode();
     }
 }

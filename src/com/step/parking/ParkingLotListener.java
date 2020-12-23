@@ -1,5 +1,5 @@
 package com.step.parking;
 
 public interface ParkingLotListener {
-    void onStatusUpdate(ParkingLot parkingLot);
+    void onStatusUpdate(ParkingLotInfo parkingLotInfo);
 }
