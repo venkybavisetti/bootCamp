@@ -25,4 +25,29 @@ public class ParkingLotTest {
         assertFalse(parkingLot.park());
         verify(mockListener).onStatusUpdate(parkingLot);
     }
+
+    @Test
+    public void shouldGetNotifiedWhenTheParkingLotIsAlmostFull() {
+        ParkingLotListener mockListener = mock(ParkingLotListener.class);
+        ParkingLot parkingLot = new ParkingLot(5);
+
+        parkingLot.addListener(mockListener, ParkingLotEvent.ALMOST_FULL);
+        parkingLot.park();
+        parkingLot.park();
+        parkingLot.park();
+
+        assertTrue(parkingLot.park());
+        verify(mockListener).onStatusUpdate(parkingLot);
+    }
+
+    @Test
+    public void shouldGetNotifiedWhenTheParkingLotIsAlmostEmpty() {
+        ParkingLotListener mockListener = mock(ParkingLotListener.class);
+        ParkingLot parkingLot = new ParkingLot(5);
+
+        parkingLot.addListener(mockListener, ParkingLotEvent.ALMOST_EMPTY);
+
+        assertTrue(parkingLot.park());
+        verify(mockListener).onStatusUpdate(parkingLot);
+    }
 }

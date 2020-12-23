@@ -30,12 +30,12 @@ public class ParkingLot {
     }
 
     private void notifyListener() {
-        if(this.isFull()){
+        if(this.isFull())
             notifyAll(ParkingLotEvent.FULL);
-        }
-        if(this.isAlmostFull()){
+        if(this.isAlmostFull())
             notifyAll(ParkingLotEvent.ALMOST_FULL);
-        }
+        if(this.isAlmostEmpty())
+            notifyAll(ParkingLotEvent.ALMOST_EMPTY);
     }
 
     private void notifyAll(ParkingLotEvent event) {
@@ -44,9 +44,16 @@ public class ParkingLot {
         }
     }
 
+    private boolean isAlmostEmpty() {
+        return this.getPercentage() <= 20;
+    }
+
     private boolean isAlmostFull() {
-        final double percentage = (double) this.filledSlotsCount / this.totalSlotsCount;
-        return percentage >= 0.8;
+        return this.getPercentage() == 80;
+    }
+
+    private double getPercentage() {
+        return (this.filledSlotsCount * 100.0) / this.totalSlotsCount;
     }
 
     private boolean isFull() {
