@@ -25,7 +25,7 @@ public class Measurement<T extends Unit> {
         if (o == null || getClass() != o.getClass()) return false;
         Measurement<?> measurement = (Measurement<?>) o;
         return Double.compare(measurement.value, value) == 0 &&
-                Objects.equals(unit, measurement.unit);
+            Objects.equals(unit, measurement.unit);
     }
 
     @Override

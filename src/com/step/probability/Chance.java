@@ -17,7 +17,7 @@ public class Chance {
         return new Chance(value * otherChance.value);
     }
 
-    public Chance or( Chance otherChance) {
+    public Chance or(Chance otherChance) {
         return this.not().and(otherChance.not()).not();
     }
 

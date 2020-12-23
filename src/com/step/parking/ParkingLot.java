@@ -3,10 +3,10 @@ package com.step.parking;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ParkingLot implements ParkingLotInfo{
-    private int filledSlotsCount;
+public class ParkingLot implements ParkingLotInfo {
     private final int totalSlotsCount;
     private final HashMap<ParkingLotEvent, ArrayList<ParkingLotListener>> listeners;
+    private int filledSlotsCount;
 
     public ParkingLot(int totalSlotsCount) {
         this.filledSlotsCount = 0;
@@ -30,11 +30,11 @@ public class ParkingLot implements ParkingLotInfo{
     }
 
     private void notifyListener() {
-        if(this.isFull())
+        if (this.isFull())
             notifyAll(ParkingLotEvent.FULL);
-        if(this.isAlmostFull())
+        if (this.isAlmostFull())
             notifyAll(ParkingLotEvent.ALMOST_FULL);
-        if(this.isAlmostEmpty())
+        if (this.isAlmostEmpty())
             notifyAll(ParkingLotEvent.ALMOST_EMPTY);
     }
 

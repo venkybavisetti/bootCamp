@@ -12,11 +12,11 @@ public enum TemperatureUnit implements Unit {
     }
 
     public double convertToBase(double value) {
-        return (value + baseValue) /conversionFactor;
+        return (value + baseValue) / conversionFactor;
     }
 
     @Override
     public double convertToThisFromBase(double value) {
-        return (value  * conversionFactor)-baseValue;
+        return (value * conversionFactor) - baseValue;
     }
 }
